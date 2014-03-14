@@ -1,0 +1,70 @@
+<!DOCTYPE html> <html> <head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<script data-require="angular.js@1.2.14" data-semver="1.2.14" src="http://code.angularjs.org/1.2.14/angular.js"></script>
+		<script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js"></script>
+
+		<title>Drupal Field Migration</title>
+	</head>
+
+	<body ng-app="SqlBuilder">
+		<div ng-controller="SqlCtrl" class='container'>
+		<div class='jumbotron'>
+			<h1 class='page-header'>Drupal Field Migration</h1>
+			<p>Build SQL queries that migrate data from one CCK field to another</p>
+		</div>
+		<form role='form'>
+			<fieldset>
+				<legend>
+					<h2>Tables <small>Should begin with field_data</small></h2>
+				</legend>
+				<div class='form-group'>
+						<div class='input-group input-group-lg'>
+							<span class="input-group-addon">Source Table</span>
+							<input type='text' ng-model="t1" class='form-control' placeholder="Table Name" />
+						</div>
+				</div>
+				<div class='form-group'>
+					<div class='input-group input-group-lg'>
+						<span class="input-group-addon">Target Table</span>  
+						<input type='text' ng-model="t2" class='form-control' placeholder="Table Name" />
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>
+					<h2>Schemas <small>Tab delimited name of columns</small></h2>
+				</legend>
+				
+				<div class='form-group'>
+					<div class='input-group input-group-lg'>
+						<span class="input-group-addon">Source Schema</span>
+						<input ng-model="s1" class='form-control' placeholder="Tab/Space delimited list" />
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='input-group input-group-lg'>
+					<span class="input-group-addon">Target Schema</span>
+						<input ng-model="s2" class='form-control' placeholder="Tab/Space delimeted list" />
+					</div>
+				</div>
+				</fieldset>
+			</form>
+			
+			<div class='panel panel-primary'>
+				<div class='panel-heading'>SQL Command</div>
+				<div id='sql' class='sql panel-body'>{{sql}}</div>
+				<div class='panel-footer'>
+					<button class='btn btn-primary' text-selector='sql'>Select</button>
+					<button class='btn' ng-click='loadDefaults()'>Open Recent</button>
+					<button class='btn' ng-click='save()'>Save</button>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
